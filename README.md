@@ -1,4 +1,5 @@
 # gapi-tasks
+[![Build Status](https://travis-ci.com/BlueBlueBlob/gapi-tasks.svg?branch=master)](https://travis-ci.com/BlueBlueBlob/gapi-tasks)
 
 ## Installation
 
