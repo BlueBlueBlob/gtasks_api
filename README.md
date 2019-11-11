@@ -18,3 +18,9 @@ if gtasks.auth_url:
 
 ```
 
+Get all task lists:
+```python
+gtasks.service.tasklists().list().execute()
+```
+
+API Documentation : https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/
