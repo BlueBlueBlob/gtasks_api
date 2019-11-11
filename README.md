@@ -7,7 +7,7 @@
 ## Usage
 Import the package: 
 ```python
-from gapi-tasks import Gtasks
+from gapitasks import Gtasks
 ```
 
 Obtain a Gtasks instance:
