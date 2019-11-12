@@ -1,9 +1,10 @@
-# gapi-tasks
+# gtasks_api
 [![Build Status](https://travis-ci.com/BlueBlueBlob/gapi-tasks.svg?branch=master)](https://travis-ci.com/BlueBlueBlob/gapi-tasks)
+[![CodeFactor](https://www.codefactor.io/repository/github/blueblueblob/gtasks_api/badge)](https://www.codefactor.io/repository/github/blueblueblob/gtasks_api)
 
 ## Installation
 
-`pip install gapi-tasks`
+`pip install gtasks_api`
 
 ## Usage
 Import the package: 
