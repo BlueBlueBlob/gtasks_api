@@ -27,7 +27,6 @@ class GtasksAPI(object):
         # created automatically when the authorization self.flow completes for the first
         # time.
         if os.path.exists(self._token_pickle):
-            self.new_auth = False
             with open(self._token_pickle, 'rb') as token:
                 self._creds = pickle.load(token)
         # If there are no (valid) credentials available, let the user log in.
