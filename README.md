@@ -8,12 +8,12 @@
 ## Usage
 Import the package: 
 ```python
-from gapitasks import Gtasks
+from gtasks_api import GtasksAPI
 ```
 
 Obtain a Gtasks instance:
 ```python
-gtasks = Gtasks('credentials.json', 'token.pickle')
+gtasks = GtasksAPI('credentials.json', 'token.pickle')
 if gtasks.auth_url:
     gtasks.finish_login(auth_code)
 

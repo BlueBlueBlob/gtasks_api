@@ -9,7 +9,7 @@ from .utils import parse_date
 SCOPES = ['https://www.googleapis.com/auth/tasks.readonly' , 'https://www.googleapis.com/auth/tasks']
 
 
-class Gtasks(object):
+class GtasksAPI(object):
 
     def __init__(self, credentials_json, token_pickle):
         
