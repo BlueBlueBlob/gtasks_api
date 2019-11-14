@@ -5,14 +5,14 @@ with open("README.md", "r") as fh:
 
 
 setuptools.setup(
-    name = 'gapitasks',
+    name = 'gtasks_api',
     version = "0.0.1",
-    description = 'A fork from the greatest gtasks ',
+    description = 'Based on quickstart sample by Google',
     long_description=long_description,
     long_description_content_type="text/markdown",
     author = 'BlueBlueBlob',
     author_email = 'adrien.lesot@gmail.com',
-    url = 'https://github.com/BlueBlueBlob/Gtasks2',
+    url = 'https://github.com/BlueBlueBlob/gtasks_api',
     license = 'MIT',
     install_requires = [
         "google-api-python-client",

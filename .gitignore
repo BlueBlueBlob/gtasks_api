@@ -6,3 +6,4 @@ build/
 dist/
 credentials.json
 token.pickle
+gtasks_api.egg-info/
