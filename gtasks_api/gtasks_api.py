@@ -59,3 +59,15 @@ class GtasksAPI(object):
             raise e
             return
 
+    def get_task_id(self, list_id: str, task_name):
+        try:
+            tasks_list = self.service.tasks().list(tasklist = list_id).execute()    
+            if not tasks_list['items']:
+                return
+            else:
+                for task in tasks_list['items']:
+                    if task['title'] == task_name:
+                        return task['id']
+        except Exception as e:
+            raise e
+            return
