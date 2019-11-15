@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name = 'gtasks_api',
-    version = "0.0.1",
+    version = "0.0.2",
     description = 'Based on quickstart sample by Google',
     long_description=long_description,
     long_description_content_type="text/markdown",

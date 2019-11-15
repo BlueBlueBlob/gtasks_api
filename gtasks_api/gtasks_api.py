@@ -45,3 +45,17 @@ class GtasksAPI(object):
         # Save the credentials for the next run
         with open(self._token_pickle, 'wb') as token:
             pickle.dump(self._creds, token)
+
+    def get_taskslist_id(self, list_name: str):
+        try:
+            all_list = self.service.tasklists().list().execute()    
+            if not all_list['items']:
+                return
+            else:
+                for task_list in all_list['items']:
+                    if task_list['title'] == list_name:
+                        return task_list['id']
+        except Exception as e:
+            raise e
+            return
+
