@@ -4,7 +4,6 @@ import os.path
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
-from .utils import parse_date
 
 SCOPES = ['https://www.googleapis.com/auth/tasks.readonly' , 'https://www.googleapis.com/auth/tasks']
 
@@ -59,7 +58,7 @@ class GtasksAPI(object):
             raise e
             return
 
-    def get_task_id(self, list_id: str, task_name):
+    def get_task_id(self, list_id: str, task_name: str):
         try:
             tasks_list = self.service.tasks().list(tasklist = list_id).execute()    
             if not tasks_list['items']:

@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name = 'gtasks_api',
-    version = "0.0.2",
+    version = "0.0.3",
     description = 'Based on quickstart sample by Google',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -17,8 +17,7 @@ setuptools.setup(
     install_requires = [
         "google-api-python-client",
         "google-auth-httplib2",
-        "google-auth-oauthlib",
-        "iso8601"
+        "google-auth-oauthlib"
     ],
     packages= setuptools.find_packages(),
     keywords = ['google', 'tasks', 'task', 'gtasks', 'gtask']
