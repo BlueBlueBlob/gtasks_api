@@ -14,16 +14,15 @@ class GtasksAPI(object):
         
         self._creds = None
         self.service = None
+        self._flow = None
         self._credentials_json = credentials_json
         self._token_pickle = token_pickle
         self.auth_url = ""
         self._connect()
-        if not self.auth_url:
-            self.service = build('tasks', 'v1', credentials=self._creds)
 
     def _connect(self):
         # The file token.pickle stores the user's access and refresh tokens, and is
-        # created automatically when the authorization self.flow completes for the first
+        # created automatically when the authorization self._flow completes for the first
         # time.
         if os.path.exists(self._token_pickle):
             with open(self._token_pickle, 'rb') as token:
@@ -33,13 +32,15 @@ class GtasksAPI(object):
             if self._creds and self._creds.expired and self._creds.refresh_token:
                 self._creds.refresh(Request())
             else:
-                self.flow = InstalledAppFlow.from_client_secrets_file(self._credentials_json, SCOPES, redirect_uri='urn:ietf:wg:oauth:2.0:oob')
-                self.auth_url, _ = self.flow.authorization_url(prompt='consent')
+                self._flow = InstalledAppFlow.from_client_secrets_file(self._credentials_json, SCOPES, redirect_uri='urn:ietf:wg:oauth:2.0:oob')
+                self.auth_url, _ = self._flow.authorization_url(prompt='consent')
                 print('Visit this url to finish authentication : {}'.format(self.auth_url))
+                return
+        self.service = build('tasks', 'v1', credentials=self._creds)
 
     def finish_login(self, auth_code: str):
-        self.flow.fetch_token(code=auth_code)
-        self._creds = self.flow.credentials
+        self._flow.fetch_token(code=auth_code)
+        self._creds = self._flow.credentials
         self.service = build('tasks', 'v1', credentials=self._creds)
         # Save the credentials for the next run
         with open(self._token_pickle, 'wb') as token:
