@@ -1,17 +1,23 @@
 from __future__ import print_function
-import pickle
+
 import os.path
-from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
+import pickle
+
+import httplib2
 from google.auth.transport.requests import Request
+
+import googleapiclient._auth
+import googleapiclient.http
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
 
 SCOPES = ['https://www.googleapis.com/auth/tasks.readonly' , 'https://www.googleapis.com/auth/tasks']
 
 
 class GtasksAPI(object):
 
+
     def __init__(self, credentials_json, token_pickle):
-        
         self._creds = None
         self.service = None
         self._flow = None
@@ -19,6 +25,10 @@ class GtasksAPI(object):
         self._token_pickle = token_pickle
         self.auth_url = ""
         self._connect()
+
+    def _build_request(self, http, *args, **kwargs):
+        new_http = googleapiclient._auth.authorized_http(self._creds)
+        return googleapiclient.http.HttpRequest(new_http, *args, **kwargs)
 
     def _connect(self):
         # The file token.pickle stores the user's access and refresh tokens, and is
@@ -36,12 +46,12 @@ class GtasksAPI(object):
                 self.auth_url, _ = self._flow.authorization_url(prompt='consent')
                 print('Visit this url to finish authentication : {}'.format(self.auth_url))
                 return
-        self.service = build('tasks', 'v1', credentials=self._creds)
+        self.service = build('tasks', 'v1', credentials=self._creds, requestBuilder=self._build_request)
 
     def finish_login(self, auth_code: str):
         self._flow.fetch_token(code=auth_code)
         self._creds = self._flow.credentials
-        self.service = build('tasks', 'v1', credentials=self._creds)
+        self.service = build('tasks', 'v1', credentials=self._creds, requestBuilder=self._build_request)
         # Save the credentials for the next run
         with open(self._token_pickle, 'wb') as token:
             pickle.dump(self._creds, token)
